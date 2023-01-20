@@ -25,7 +25,7 @@ public class RingPayTestScripts{
 		Utilities.relaunch = true;
 		ringPayBusiness = new com.business.RingPay.RingPayBusinessLogic("ring");
 	}
-	//yeppppppppppp
+	//yeppppppppppppp
 	@Test(priority = 0)
 	@Parameters({"SignUpBtn","permission"})
     public void  User_Playstore_Flow(String SignUpBtn, String permission) throws Exception {
