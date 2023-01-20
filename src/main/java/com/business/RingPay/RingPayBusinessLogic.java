@@ -932,7 +932,7 @@ try {
 	
 //============================================Offer Screen Merchant Flow=====================================================================================
 		public void merchantOfferPageValidation() throws Exception {
-			//getDriver().resetApp();
+			getDriver().resetApp();
 			waitTime(5000);
 			if (verifyElementPresent(RingLoginPage.objCamPermPopUp, "Enable permissions button")) {
 				enablePermissions();
@@ -2085,7 +2085,7 @@ try {
 	}
 //=========================================Promocode transaction Set pin=============================================================
 	public void promoCodeFlowSetPin() throws Exception {
-		//getDriver().resetApp();
+		getDriver().resetApp();
 		if (verifyElementPresent(RingLoginPage.objCamPermPopUp, "Enable permissions button")) {
 			enablePermissions();
 		}
@@ -2375,7 +2375,7 @@ try {
 //=========================================Check Payment multiple Cases Start====================================================
 	public void repaymentMultipleCases() throws Exception {
 		extent.HeaderChildNode("Check payment page multiple cases");
-		//getDriver().resetApp();
+		getDriver().resetApp();
 		if (verifyElementPresent(RingLoginPage.objCamPermPopUp, "Enable permissions button")) {
 			enablePermissions();
 		}
@@ -2493,7 +2493,7 @@ try {
 	public void BankTransferModule(String accountNo, String name) throws Exception
     {
         extent.HeaderChildNode("RingPay  Transfer Flow");
-        //getDriver().resetApp();
+        getDriver().resetApp();
         if (verifyElementPresent(RingLoginPage.objCamPermPopUp, "Enable permissions button")) {
 			enablePermissions();
 		}
@@ -2626,7 +2626,7 @@ try {
 //===============================================Add Address Flow Start===============================================================
 	public void addAddressFlow() throws Exception {
         extent.HeaderChildNode("RingPay Add Address Flow");
-        //getDriver().resetApp();
+        getDriver().resetApp();
         waitTime(4000);
         if (verifyElementPresent(RingLoginPage.objCamPermPopUp, "Enable permissions button")) {
 			enablePermissions();
@@ -2739,7 +2739,7 @@ try {
 //===============================================User Scan and Pay Start===============================================================================================	
 	public void userScanAndPayTransactions() throws Exception {
 		extent.HeaderChildNode("SetPin Merchant Flow Without Location");
-		//getDriver().resetApp();
+		getDriver().resetApp();
 		onBoarding();
 		explicitWaitVisibility(HomePage.objHome, 10);
 		String sHome = getText(HomePage.objHome);
@@ -3109,7 +3109,7 @@ try {
 //=================================================Merchant Flow====================================================================
 	public void merchantFlow() throws Exception {
         extent.HeaderChildNode("RingPay App Merchant Flow");
-        //getDriver().resetApp();
+        getDriver().resetApp();
         if (verifyElementPresent(RingLoginPage.objCamPermPopUp, "Enable permissions button")) {
 			enablePermissions();
 		}
@@ -3836,9 +3836,10 @@ try {
 	}
 	public String RingPolicy_BlackBox(String appScore, boolean flag) throws Exception{
 		extent.HeaderChildNode("Ring Policy - Reusable Method for BlackBox pool test cases");
+		
 		 String pool_pref="";
 		newAdminPanel_appScore(appScore);
-		//BrowsertearDown();
+		BrowsertearDown();
 		waitTime(5000);
 		setPlatform("Android");
 		initDriver();
@@ -3861,9 +3862,6 @@ try {
 		}
 		Aclick(UserRegistrationNew.objProceed, "Proceed Button");
 		waitTime(3000);
-		Utilities.setPlatform = "Web";
-        new CommandBase("Chrome");
-        waitTime(4000);
         getWebDriver().get("https://new-admin-panel.test.ideopay.in/users?selected=mobile_number&search="+mobNo+"&");
 		type(InstaLoanPage.objEmail,"shakir.muchumarri@collabera.com","Email text field");
 		click(InstaLoanPage.objContinue,"Continue Button");
@@ -4500,6 +4498,7 @@ try {
 	//================================================CIBIL surrogate POOL Offer test cases =======================================
 	public void TC_Ring_Customer_Seg_03(String appScore) throws Exception{
 		extent.HeaderChildNode("TC_Ring_Customer_Seg_03");
+		getDriver().resetApp();
 		String pool_pref = RingPolicy_BlackBox(appScore,false);
 		if(pool_pref!="") {
 			Assert.assertEquals("POOL_1", pool_pref);
