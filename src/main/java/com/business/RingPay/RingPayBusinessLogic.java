@@ -31,6 +31,7 @@ import com.android.RingPayPages.GmailLoginPage;
 import com.android.RingPayPages.HomPageNew;
 import com.android.RingPayPages.HomePage;
 import com.android.RingPayPages.InstaLoanPage;
+import com.android.RingPayPages.KailashApp;
 import com.android.RingPayPages.KycDocument;
 import com.android.RingPayPages.MerchantOfferPage;
 import com.android.RingPayPages.MobileLoginPage;
@@ -374,8 +375,10 @@ try {
 		softAssertion.assertEquals("Your Ring account has been temporarily blocked due to security reasons. Try again after 2 minutes.",popupMessageValidationOfBlockNumber);
 		logger.info("Temprory Block Your Number For 2 Minutes Validated PopUp Message");
 		extent.extentLoggerPass("PopUp Of Block User For 2 Minutes","Your Ring account has been temporarily blocked due to security reasons. Try again after 2 minutes.");
-		Aclick(RingLoginPage.btnOkGotIt, "Button Ok, Got It!");
+		//Aclick(RingLoginPage.btnOkGotIt, "Button Ok, Got It!");
+		Aclick(KailashApp.btnOkGotItOtp,"Ok got it button");
 //		trueCallerPopup();
+		//getDriver().closeApp();
 		extent.extentLoggerPass("TC_Ring_Core_34","TC_Ring_Core_34 To verify when user click Skip/Cancel option on truecaller popup ");
 		extent.extentLoggerPass("TC_Ring_Core_27","TC_Ring_Core_27 To Verify user enters wrong otp and attempts for 5th time  by clicking on Resend button ");
 		waitTime(4000);
@@ -392,7 +395,8 @@ try {
 		type(RingLoginPage.objMobTextField, blockMobileNo, "Mobile text field");
 		System.out.println(blockMobileNo);
 		waitTime(5000);
-		Aclick(RingLoginPage.objOkGotitBtn, "Button Ok, Got It!");
+		//Aclick(RingLoginPage.objOkGotitBtn, "Button Ok, Got It!");
+		Aclick(KailashApp.btnOkGotItLogin,"Ok got it button");
 		extent.extentLoggerPass("TC_Ring_Core_28","TC_Ring_Core_28 To Verify when user click on Ok, Got It! on the bottom sheet ");
 		// TC31
 		click(RingLoginPage.objMobTextField, "Mobile Number Field");
@@ -3250,6 +3254,8 @@ try {
 //			explicitWaitVisibility(RingLoginPage.objMobTextField, 10);
 //		}else {
 			waitTime(3000);
+			verifyElementPresentAndClick(RingLoginPage.objNoneBtn, "None of the above button");
+			waitTime(3000);
 			explicitWaitVisibility(RingLoginPage.objVerifyMobHeader, 10);
 			String verifyMobHeaderTxt = getText(RingLoginPage.objVerifyMobHeader);
 			softAssertion.assertEquals(verifyMobHeaderTxt, "Verify Mobile");
@@ -3836,7 +3842,6 @@ try {
 	}
 	public String RingPolicy_BlackBox(String appScore, boolean flag) throws Exception{
 		extent.HeaderChildNode("Ring Policy - Reusable Method for BlackBox pool test cases");
-		
 		 String pool_pref="";
 		newAdminPanel_appScore(appScore);
 		BrowsertearDown();
@@ -3852,7 +3857,19 @@ try {
 		System.out.println(mobNo);
 		enterOtp("888888");
 		readAndAccept();
+		waitTime(3000);
+		Utilities.setPlatform = "Web";
+        new CommandBase("Chrome");
+        waitTime(4000);
+        getWebDriver().get("https://new-admin-panel.test.ideopay.in/users?selected=mobile_number&search="+mobNo+"&");
+		type(InstaLoanPage.objEmail,"shakir.muchumarri@collabera.com","Email text field");
+		click(InstaLoanPage.objContinue,"Continue Button");
+		explicitWaitVisibility(InstaLoanPage.objUserRefNo,10);
+		String userRefNo = getText(InstaLoanPage.objUserRefNo);
 		waitTime(30000);
+		setPlatform("Android");
+		initDriver();
+		waitTime(5000);
 		userDetails();
 		if(flag) {
 			dateOfBirth("MAY","04","2002");
@@ -3861,13 +3878,7 @@ try {
 			dateOfBirth("MAY","04","1997");
 		}
 		Aclick(UserRegistrationNew.objProceed, "Proceed Button");
-		waitTime(3000);
-        getWebDriver().get("https://new-admin-panel.test.ideopay.in/users?selected=mobile_number&search="+mobNo+"&");
-		type(InstaLoanPage.objEmail,"shakir.muchumarri@collabera.com","Email text field");
-		click(InstaLoanPage.objContinue,"Continue Button");
 		waitTime(10000);
-		explicitWaitVisibility(InstaLoanPage.objUserRefNo,10);
-		String userRefNo = getText(InstaLoanPage.objUserRefNo);
 		String json_data = executeQuery1("SELECT digi_data FROM db_tradofina.line_application where user_reference_number='"+userRefNo+"';");
 		JSONObject obj = new JSONObject(json_data);
 		if(obj.has("offer_preference")) {
@@ -3876,7 +3887,7 @@ try {
 		}
 		
 		BrowsertearDown();
-	    getDriver().resetApp();
+		getDriver().resetApp();
 	    return pool_pref;
 	}
 	

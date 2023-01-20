@@ -99,7 +99,7 @@ public class RingPayTestScripts{
 	@Test(priority = 13)
 	public void ringPayLogin() throws Exception {
 		ringPayBusiness.mockUserAPI();
-	}//hello
+	}
 	
 	@Test(priority = 14)
 	public void ringInstaWhitelist() throws Exception{
@@ -405,7 +405,7 @@ public class RingPayTestScripts{
 	public void ringPolicy_TC_143() throws Exception{
 		ringPayBusiness.TC_Ring_Customer_Seg_143();
 	}
-	/*@Test(priority = 73)
+	@Test(priority = 73)
 	public void instaOptionalJourney() throws Exception{
 		ringPayBusiness.instaLoanWhitelistLogic();	
 	}
@@ -423,9 +423,9 @@ public class RingPayTestScripts{
 	@Test(priority = 76)
 	public void instaTxnHistory() throws Exception{
 		ringPayBusiness.instaLoanWhitelistLogic();
-	}*/
-	/*@AfterTest
+	}
+	@AfterTest
 	public void ringAppQuit() throws Exception{
 		ringPayBusiness.TearDown();
-	}*/
+	}
 }
