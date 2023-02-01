@@ -26,7 +26,7 @@ public class RingPayTestScripts{
 		ringPayBusiness = new com.business.RingPay.RingPayBusinessLogic("ring");
 	}
 	//yeppppppppppppp
-	@Test(priority = 0)
+	/*@Test(priority = 0)
 	@Parameters({"SignUpBtn","permission"})
     public void  User_Playstore_Flow(String SignUpBtn, String permission) throws Exception {
 		ringPayBusiness.User_Play_Store_Flow(SignUpBtn, permission);
@@ -51,7 +51,7 @@ public class RingPayTestScripts{
 	@Test(priority=4)
 	public void ageCheck() throws Exception {
 		ringPayBusiness.ageCriteriaFailedCheck();
-	}
+	}*/
 	
 	/*@Test(priority = 5)
     @Parameters({"baseURLMockUser","gender","encrypted_name","portalEmail","portalPassword","portalOTP"})
@@ -65,7 +65,7 @@ public class RingPayTestScripts{
 		 ringPayBusiness.bannerLogicOnHomePage(url,gender,encrypted_name,portalEmail,portalPassword,portalOTP);
 	 }*/
 	
-	 @Test(priority = 8)
+	 /*@Test(priority = 8)
 	 public void transactionSetPin() throws Exception {
 		 ringPayBusiness.transactionSetPin();
 	 }
@@ -213,7 +213,7 @@ public class RingPayTestScripts{
 	
 	@Test(priority = 35)
 	public void ringPolicy_TC_159_BC1() throws Exception{
-		ringPayBusiness.TC_Ring_Customer_Seg_158_L1(prop.getproperty("age_digi"),prop.getproperty("bc1"));
+		ringPayBusiness.TC_Ring_Customer_Seg_159_BC1(prop.getproperty("age_digi"),prop.getproperty("bc1"));
 	}
 	
 	@Test(priority=36)
@@ -285,14 +285,14 @@ public class RingPayTestScripts{
 	@Test(priority=47)
 	public void ringPolicy_TC_166() throws Exception{
 		ringPayBusiness.TC_Ring_Customer_Seg_166(prop.getproperty("band_6_7"),prop.getproperty("bc1"), prop.getproperty("cc_flag_positive"),prop.getproperty("kla_flag_negative"));
-	}
+	}*/
 	
-	@Test(priority=48)
+	/*@Test(priority=48)
 	public void ringPolicy_TC_131() throws Exception{
 		ringPayBusiness.TC_Ring_Customer_Seg_131(prop.getproperty("band_9_20"), prop.getproperty("ltbc1"), prop.getproperty("cc_flag_negative"),prop.getproperty("kla_flag_negative"));
-	}
+	}*/
 	
-	@Test(priority=54)
+	/*@Test(priority=54)
 	public void ringPolicy_TC_99() throws Exception{
 		ringPayBusiness.TC_Ring_Customer_Seg_99(prop.getproperty("l3_band_no_offer"), prop.getproperty("no_offer"));
 	}
@@ -384,14 +384,14 @@ public class RingPayTestScripts{
 	@Test(priority=72)
 	public void ringPolicy_TC_126() throws Exception{
 		ringPayBusiness.TC_Ring_Customer_Seg_126();
-	}
+	}*/
 	
 	/*@Test(priority=73)
 	public void ringPolicy_TC_151() throws Exception{
 		ringPayBusiness.TC_Ring_Customer_Seg_151();
 	}*/
 	
-	@Test(priority=74)
+	/*@Test(priority=74)
 	public void ringPolicy_TC_141() throws Exception{
 		ringPayBusiness.TC_Ring_Customer_Seg_141();
 	}
@@ -423,7 +423,48 @@ public class RingPayTestScripts{
 	@Test(priority = 76)
 	public void instaTxnHistory() throws Exception{
 		ringPayBusiness.instaLoanWhitelistLogic();
+	}*/
+
+	@Test(priority = 77)
+	public void ringPolicy_TC_47() throws Exception{
+		ringPayBusiness.TC_Ring_Customer_Seg_47(prop.getproperty("stepup_greater_amount"));
 	}
+	
+	@Test(priority = 78)
+	public void ringPolicy_TC_48() throws Exception{
+		ringPayBusiness.TC_Ring_Customer_Seg_48(prop.getproperty("stepup_lesser_amount"));
+	}
+	
+	@Test(priority = 79)
+	public void ringPolicy_TC_49() throws Exception{
+		ringPayBusiness.TC_Ring_Customer_Seg_49(prop.getproperty("stepup_greater_amount"));
+	}
+	
+	@Test(priority = 80)
+	public void ringPolicy_TC_52() throws Exception{
+		ringPayBusiness.TC_Ring_Customer_Seg_52(prop.getproperty("stepup_greater_amount"));
+	}
+	
+	@Test(priority=81)
+	public void ringPolicy_TC_53() throws Exception{
+		ringPayBusiness.TC_Ring_Customer_Seg_53(prop.getproperty("stepup_greater_amount"));
+	}
+	
+	@Test(priority=82)
+	public void ringPolicy_TC_54() throws Exception{
+		ringPayBusiness.TC_Ring_Customer_Seg_54(prop.getproperty("stepup_greater_amount"));
+	}
+	
+	@Test(priority=83)
+	public void ringPolicy_TC_55() throws Exception{
+		ringPayBusiness.TC_Ring_Customer_Seg_55(prop.getproperty("stepup_greater_amount"));
+	}
+	
+	@Test(priority=84)
+	public void ringPolicy_TC_56() throws Exception{
+		ringPayBusiness.TC_Ring_Customer_Seg_56(prop.getproperty("stepup_greater_amount"));
+	}
+	
 	@AfterTest
 	public void ringAppQuit() throws Exception{
 		ringPayBusiness.TearDown();

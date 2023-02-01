@@ -39,6 +39,7 @@ public class BankTransferModule {
     //pop up
     public static By objEnjoyingPopup=By.xpath("//*[@text='Are you enjoying the app?']");
     public static By objYesBtn=By.xpath("//*[@text='Are you enjoying the app?']/following-sibling::android.view.ViewGroup/descendant::android.widget.TextView[@text='Yes']");
+    public static By objNoBtn = By.xpath("//*[@text='No']");
     public static By objRateExperience=By.xpath("//*[@text='Rate your experience']/parent::android.view.ViewGroup/preceding-sibling::android.view.ViewGroup/descendant::android.view.ViewGroup");
 
     public static By objexistingBankAcc = By.xpath("//*[@class='android.view.ViewGroup' and ./*[@class='android.widget.ImageView']]");

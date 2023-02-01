@@ -126,4 +126,6 @@ public class UserRegistrationNew {
 				.xpath("(//*[@text='Payment Done!']/following-sibling::android.widget.TextView)[2]");
 		public static By objGoTOHomePageBtn = By.xpath("//*[@text='Go to Homepage']");
 		public static By objNoBtn = By.xpath("//*[@text='No']");
+		public static By objOkGotIt = By.xpath("//*[@text='Ok, Got It']");
 }
+

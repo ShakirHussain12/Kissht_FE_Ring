@@ -319,7 +319,9 @@ public class Drivertools {
 				||methodName.equals("ringPolicy_TC_43") || methodName.equals("ringPolicy_TC_44") || methodName.equals("ringPolicy_TC_45")
 				|| methodName.equals("ringPolicy_TC_46") || methodName.equals("ringPolicy_TC_167") || methodName.equals("ringPolicy_TC_168")
 				||methodName.equals("ringPolicy_TC_169") || methodName.equals("ringPolicy_TC_7") || methodName.equals("ringPolicy_TC_8")
-				||methodName.equals("ringPolicy_TC_151")){
+				||methodName.equals("ringPolicy_TC_151") || methodName.equals("ringPolicy_TC_47") || methodName.equals("ringPolicy_TC_48")|| methodName.equals("ringPolicy_TC_49")
+				||methodName.equals("ringPolicy_TC_52") ||methodName.equals("ringPolicy_TC_53") ||methodName.equals("ringPolicy_TC_54") ||methodName.equals("ringPolicy_TC_55")
+				||methodName.equals("ringPolicy_TC_56")){
 			
 			
 			setPlatfrom("Web");

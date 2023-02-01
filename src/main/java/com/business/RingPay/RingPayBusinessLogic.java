@@ -375,8 +375,8 @@ try {
 		softAssertion.assertEquals("Your Ring account has been temporarily blocked due to security reasons. Try again after 2 minutes.",popupMessageValidationOfBlockNumber);
 		logger.info("Temprory Block Your Number For 2 Minutes Validated PopUp Message");
 		extent.extentLoggerPass("PopUp Of Block User For 2 Minutes","Your Ring account has been temporarily blocked due to security reasons. Try again after 2 minutes.");
-		//Aclick(RingLoginPage.btnOkGotIt, "Button Ok, Got It!");
-		Aclick(KailashApp.btnOkGotItOtp,"Ok got it button");
+		Aclick(RingLoginPage.btnOkGotIt, "Button Ok, Got It!");
+		//Aclick(KailashApp.btnOkGotItOtp,"Ok got it button");
 //		trueCallerPopup();
 		//getDriver().closeApp();
 		extent.extentLoggerPass("TC_Ring_Core_34","TC_Ring_Core_34 To verify when user click Skip/Cancel option on truecaller popup ");
@@ -395,8 +395,8 @@ try {
 		type(RingLoginPage.objMobTextField, blockMobileNo, "Mobile text field");
 		System.out.println(blockMobileNo);
 		waitTime(5000);
-		//Aclick(RingLoginPage.objOkGotitBtn, "Button Ok, Got It!");
-		Aclick(KailashApp.btnOkGotItLogin,"Ok got it button");
+		Aclick(RingLoginPage.objOkGotitBtn, "Button Ok, Got It!");
+		//Aclick(KailashApp.btnOkGotItLogin,"Ok got it button");
 		extent.extentLoggerPass("TC_Ring_Core_28","TC_Ring_Core_28 To Verify when user click on Ok, Got It! on the bottom sheet ");
 		// TC31
 		click(RingLoginPage.objMobTextField, "Mobile Number Field");
@@ -634,7 +634,7 @@ try {
 		extent.extentLogger("Toast Message", toast_85);
 		softAssertion.assertEquals("First and Last name should be different", toast_85);
 		extent.extentLoggerPass("TC_Ring_Core_90","TC_Ring_Core_90 - To verify the user is not able to 'Continue' with entering same 'First Name' and  'Last Name'");
-
+		
 		waitTime(3000);
 		clearField(UserRegistrationNew.objFirstName, "First Name text field");
 		clearField(UserRegistrationNew.objLastName, "Last Name text field");
@@ -3082,7 +3082,7 @@ try {
 			}
 		}
 	}
-	public void onBoarding() throws Exception {
+	public String onBoarding() throws Exception {
 		extent.HeaderChildNode("User Play store Flow Module");
 		if (verifyElementPresent(RingLoginPage.objCamPermPopUp, "Enable permissions button")) {
 			enablePermissions();
@@ -3091,23 +3091,28 @@ try {
 		Aclick(RingLoginPage.objLoginLink, "Signup/Login link");
 		explicitWaitVisibility(RingLoginPage.objLoginMobile, 10);
 		Aclick(RingLoginPage.objLoginMobile, "Continue with Mobile option");
-		String nMobileNumber = "9"+RandomIntegerGenerator(9);
+		waitTime(3000);
+		verifyElementPresentAndClick(RingLoginPage.objNoneBtn, "None of the above button");
+		waitTime(3000);
+		String nMobileNumber = "6"+RandomIntegerGenerator(9);
 		click(RingLoginPage.objMobTextField, "Mobile Number Field");
 		type(RingLoginPage.objMobTextField, nMobileNumber, "Mobile Number Field");
 		enterOtp("888888");
 		readAndAccept();
-		waitTime(40000);
+		waitTime(30000);
+		
 		userDetails();
 		dateOfBirth(prop.getproperty("dateOfBirthMonth"), prop.getproperty("dateOfBirthDate"), prop.getproperty("dateOfBirthYear"));
 		Aclick(UserRegistrationNew.objProceed, "Proceed Button");
 		waitTime(10000);
-		instaNewCommunicationAddress();
+		addAddress("asasa","asaas","asasa","asq","560102");
 		waitTime(5000);
 		instaLoancongratsScreen();
 		instaLoanSetPin(prop.getproperty("ValidPin"),prop.getproperty("ValidPin"));
 		verifyElementPresentAndClick(RingUserDetailPage.objCrossBtn, "Cross Button");
 		String sHome = getText(HomePage.objHome);
 		softAssertion.assertEquals(sHome, "Home");
+		return nMobileNumber;
 	}
 //===============================================User Scan and Pay end===========================================================	
 //=================================================Merchant Flow====================================================================
@@ -3579,12 +3584,10 @@ try {
 	}
 	public void instaLoanSetPin(String enterMPIN , String ReEnterMPIN) throws Exception {
 		verifyElementPresent(RingLoginPage.objSetPinPage, getText(RingLoginPage.objSetPinPage));
-		waitTime(5000);
-		click(RingLoginPage.objEnterPin, "Mpin Field");
-		click(RingLoginPage.objEnterPin, "Mpin Field");
+		waitTime(4000);
+		Aclick(RingLoginPage.objEnterPin, "Mpin Field");
 		type(RingLoginPage.objEnterPin, enterMPIN, "MPIN Field");
-		click(RingUserDetailPage.objReEnterPin, "Re-Enter Pin Field");
-		click(RingUserDetailPage.objReEnterPin, "Re-Enter Pin Field");
+		Aclick(RingUserDetailPage.objReEnterPin, "Re-Enter Pin Field");
 		type(RingUserDetailPage.objReEnterPin, ReEnterMPIN, "Re-Enter pin Field");
 		verifyElementPresentAndClick(RingLoginPage.objSetinSubmitBtn, getText(RingLoginPage.objSetinSubmitBtn));
 	}
@@ -4140,6 +4143,95 @@ try {
 		waitTime(20000);
 		//getDriver().resetApp();
 		return userRefNo;
+	}
+	
+	public String repeatGrid(String amt) throws Exception{
+		extent.HeaderChildNode("Ring Policy - Reusable Method for low_segmentation offer test cases");
+		System.out.println(calendarDate(15));
+		enablePermissions();
+		Aclick(RingLoginPage.objLoginLink,"Sign up login link");
+		loginMobile();
+		String mobNo = "7" + RandomIntegerGenerator(9);
+		mobileNoValidation2(mobNo);
+		System.out.println(mobNo);
+		enterOtp("888888");
+		readAndAccept();
+		waitTime(3000);
+		newAdminPanel_appScore("0.007666832");
+		/*Utilities.setPlatform = "Web";
+        new CommandBase("Chrome");
+        waitTime(4000);*/
+        getWebDriver().get("https://new-admin-panel.test.ideopay.in/users?selected=mobile_number&search="+mobNo+"&");
+		explicitWaitVisibility(InstaLoanPage.objUserRefNo,10);
+		String userRefNo = getText(InstaLoanPage.objUserRefNo);
+		waitTime(3000);
+		cibilDummy(prop.getproperty("ltbc1"), userRefNo);
+		setPlatform("Android");
+		initDriver();
+		waitTime(5000);
+		userDetails();
+		dateOfBirth(prop.getproperty("dateOfBirthMonth"), prop.getproperty("dateOfBirthDate"), prop.getproperty("dateOfBirthYear"));
+		Aclick(UserRegistrationNew.objProceed, "Proceed Button");
+		waitTime(10000);
+		addAddress("asasa","asaas","asasa","asq","560102");
+		waitTime(5000);
+		instaLoancongratsScreen();
+		instaLoanSetPin(prop.getproperty("ValidPin"),prop.getproperty("ValidPin"));
+		waitTime(5000);
+		verifyElementPresentAndClick(RingUserDetailPage.objCrossBtn, "Cross Button");
+		String lineRefNo = executeQuery1("SELECT line_reference_number FROM db_tradofina.lines where user_reference_number='"+userRefNo+"';");
+		click(HomePage.objScanQrBtn,"Scan QR button");
+		waitTime(10000);
+		explicitWaitVisibility(HomePage.objPaymentField,30);
+		type(HomePage.objPaymentField,amt,"Pay amt text field");
+		waitTime(3000);
+		Aclick(HomePage.objPayNowBtn,"Pay now button");
+		waitTime(15000);
+		explicitWaitVisibility(PaymentPage.objEditTransactionPin,30);
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		type(PaymentPage.objEditTransactionPin,"1111","MPIN Field");
+		click(PaymentPage.objContinue,"Continue button");
+		explicitWaitVisibility(PaymentPage.objGoToHomePage,30);
+		click(PaymentPage.objGoToHomePage,"Go to homepage button");
+		explicitWaitVisibility(HomePage.objAvailableLimit,20);
+		generateForceBill(userRefNo,lineRefNo,calendarDate(15));
+		explicitWaitVisibility(BankTransferModule.objNoBtn,30);
+		click(BankTransferModule.objNoBtn,"No button");
+		explicitWaitClickable(HomPageNew.objPayEarlyBtn, 30);
+		Aclick(HomPageNew.objPayEarlyBtn, "Pay Early Button");
+		explicitWaitVisibility(HomPageNew.objRepaymentHeader, 10);
+		waitTime(3000);
+		hideKeyboard();
+		explicitWaitVisibility(HomPageNew.objNetBankingOption, 10);
+		Aclick(HomPageNew.objNetBankingOption, "Net Banking/Debit card option");
+		explicitWaitVisibility(HomPageNew.objNetbanking,20);
+		Aclick(HomPageNew.objNetbanking, "Netbanking");
+		explicitWaitVisibility(HomPageNew.objSelectBankHeader, 10);
+		Aclick(HomPageNew.objSBIBank, "SBI bank");
+		Aclick(HomPageNew.objPayNowBtn, "Pay Now Button");
+		explicitWaitVisibility(HomPageNew.objSuccessBtn, 10);
+		Aclick(HomPageNew.objSuccessBtn, "Success Button");
+		waitTime(4000);
+		explicitWaitVisibility(PaymentPage.objGoToHomePage,30);
+		click(PaymentPage.objGoToHomePage,"Go to homepage button");
+		if(Integer.parseInt(amt)>=50) {
+			System.out.println("Repeat set");
+			explicitWaitVisibility(RingLoginPage.objIAcceptCheckBox,30);
+			click(RingLoginPage.objIAcceptCheckBox,"Terms & Conditions check box");
+			click(UserRegistrationNew.objOkGotIt, "OK Got it Button");
+		}
+		else if(Integer.parseInt(amt)<50) {
+			System.out.println("Repeat not set");
+			verifyElementNotPresent(RingLoginPage.objIAcceptCheckBox,30);
+		}
+		click(RingLoginPage.objTopMenu, "Top left menu button");
+		explicitWaitVisibility(HomePage.objBillHistory,10);
+		click(HomePage.objBillHistory,"Bill history tab");
+		explicitWaitVisibility(HomePage.objBillRefNo,10);
+		String billRefNo = getText(HomePage.objBillRefNo);
+		Back(2);
+		return billRefNo;
 	}
 	
 	public String noOffer(String appScore, String cibil_score) throws Exception{
@@ -4884,6 +4976,8 @@ try {
 		if((json_data==null) && verifyElementNotPresent(RingUserDetailPage.objSorryMsg,30)) {
 			extent.extentLoggerPass("TC_Ring_Customer_Seg_74","TC_Ring_Customer_Seg_74-To verify homepage after adding users in block table once limit activated");
 		}
+		
+		getDriver().resetApp();
 	}
 	
 	//================================================KLA offer test cases =======================================
@@ -5022,9 +5116,9 @@ try {
 	
 	public void TC_Ring_Customer_Seg_131(String appScore,String cibil_score,String cc_flag,String kla_flag) throws Exception{
 		extent.HeaderChildNode("TC_Ring_Customer_Seg_131");
-		
+		executeUpdateOnly("update db_tradofina.bnpl_line_offers set limit_amount='0' where merchant_type='type2' and segment='LTBC1' and surrogate_type='EQUIFAX' and upper_band='15';","db_tradofina.bnpl_line_offers");
 		String userRefNo = lowSegmentationOffer(appScore,cibil_score,cc_flag,kla_flag);
-		//addAddress("as","assa","afaa","asdafd","560102");
+		addAddress("as","assa","afaa","asdafd","560102");
 		explicitWaitVisibility(PromoCodeOfferPage.objCheckBox,20);
 		click(PromoCodeOfferPage.objCheckBox,"Terms & Conditions check box");
 		click(PromoCodeOfferPage.objAcceptOffer,"Accept offer button");
@@ -5043,7 +5137,7 @@ try {
 			System.out.println("yep");
 			extent.extentLoggerPass("TC_Ring_Customer_Seg_131","TC_Ring_Customer_Seg_131-To verify user receives offer from Low_Segmentation for Segments BC1 / BC2 / LTBC1 / THIN for band 9-20 only when 'ratio_parsed_total_sms>0.095' and 'latest_loan_history_months_count>25.5' and 'no_of_loan_entries>9.5'");
 		}
-		
+		executeUpdateOnly("update db_tradofina.bnpl_line_offers set limit_amount='600' where merchant_type='type2' and segment='LTBC1' and surrogate_type='EQUIFAX' and upper_band='15';","db_tradofina.bnpl_line_offers");
 		getDriver().resetApp();
 	}
 
@@ -5530,6 +5624,294 @@ try {
 			System.out.println("yep");
 			extent.extentLoggerPass("TC_Ring_Customer_Seg_143","TC_Ring_Customer_Seg_143-To verify onboarding new user whose cabal is less or equal to the cut off limit");
 		}
+		getDriver().resetApp();
+	}
+	
+	//================================================To verify if user is set as repeat test cases =======================================
+	
+	public void TC_Ring_Customer_Seg_47(String amt) throws Exception{
+		extent.HeaderChildNode("TC_Ring_Customer_Seg_47");
+		repeatGrid(amt);
+		click(HomePage.objScanQrBtn,"Scan QR button");
+		waitTime(10000);
+		explicitWaitVisibility(HomePage.objPaymentField,30);
+		type(HomePage.objPaymentField,prop.getproperty("stepup_greater_amount_next"),"Pay amt text field");
+		waitTime(3000);
+		Aclick(HomePage.objPayNowBtn,"Pay now button");
+		waitTime(15000);
+		explicitWaitVisibility(PaymentPage.objEditTransactionPin,30);
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		type(PaymentPage.objEditTransactionPin,"1111","MPIN Field");
+		click(PaymentPage.objContinue,"Continue button");
+		explicitWaitVisibility(PaymentPage.objGoToHomePage,30);
+		click(PaymentPage.objGoToHomePage,"Go to homepage button");
+		explicitWaitVisibility(HomePage.objAvailableLimit,20);
+		
+		explicitWaitVisibility(HomePage.objFirstTransaction,10);
+		click(HomePage.objFirstTransaction,"Most recent transaction");
+		
+		explicitWaitVisibility(HomePage.transacNumber,10);
+		String txnNumber = getText(HomePage.transacNumber);
+		
+		String json_data = executeQuery1("SELECT digi_data FROM db_tradofina.bnpl_transactions where bnpl_txn_reference_number='"+txnNumber+"';");
+		JSONObject obj = new JSONObject(json_data);
+		Boolean repeatFlag = obj.getBoolean("is_repeat");
+		
+		if(repeatFlag==true) {
+			System.out.println("yes");
+			extent.extentLoggerPass("TC_Ring_Customer_Seg_47","TC_Ring_Customer_Seg_47-To verify if user sets as repeat if user has utilized minimum amount of rs.50 from previous limit and does repayment");
+		}
+		getDriver().resetApp();
+		
+	}
+
+	public void TC_Ring_Customer_Seg_48(String amt) throws Exception{
+		extent.HeaderChildNode("TC_Ring_Customer_Seg_48");
+		repeatGrid(amt);
+		click(HomePage.objScanQrBtn,"Scan QR button");
+		waitTime(10000);
+		explicitWaitVisibility(HomePage.objPaymentField,30);
+		type(HomePage.objPaymentField,prop.getproperty("stepup_lesser_amount_next"),"Pay amt text field");
+		waitTime(3000);
+		Aclick(HomePage.objPayNowBtn,"Pay now button");
+		waitTime(15000);
+		explicitWaitVisibility(PaymentPage.objEditTransactionPin,30);
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		type(PaymentPage.objEditTransactionPin,"1111","MPIN Field");
+		click(PaymentPage.objContinue,"Continue button");
+		explicitWaitVisibility(PaymentPage.objGoToHomePage,30);
+		click(PaymentPage.objGoToHomePage,"Go to homepage button");
+		explicitWaitVisibility(HomePage.objAvailableLimit,20);
+		
+		explicitWaitVisibility(HomePage.objFirstTransaction,10);
+		click(HomePage.objFirstTransaction,"Most recent transaction");
+		
+		explicitWaitVisibility(HomePage.transacNumber,10);
+		String txnNumber = getText(HomePage.transacNumber);
+		
+		String json_data = executeQuery1("SELECT digi_data FROM db_tradofina.bnpl_transactions where bnpl_txn_reference_number='"+txnNumber+"';");
+		JSONObject obj = new JSONObject(json_data);
+		Boolean repeatFlag = obj.getBoolean("is_repeat");
+		
+		if(repeatFlag==false) {
+			System.out.println("yes");
+			extent.extentLoggerPass("TC_Ring_Customer_Seg_48","TC_Ring_Customer_Seg_48-To verify if user does not get set as repeat if user has not utilized minimum amount of rs.50");
+		}
+		getDriver().resetApp();
+	}
+	
+	//================================================To verify if user gets step up when set as repeat test cases =======================================
+	public void TC_Ring_Customer_Seg_49(String amt) throws Exception{
+		extent.HeaderChildNode("TC_Ring_Customer_Seg_49");
+		String billRefNo = repeatGrid(amt);
+		
+		click(HomePage.objScanQrBtn,"Scan QR button");
+		waitTime(10000);
+		explicitWaitVisibility(HomePage.objPaymentField,30);
+		type(HomePage.objPaymentField,prop.getproperty("stepup_greater_amount_next"),"Pay amt text field");
+		waitTime(3000);
+		Aclick(HomePage.objPayNowBtn,"Pay now button");
+		waitTime(15000);
+		explicitWaitVisibility(PaymentPage.objEditTransactionPin,30);
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		type(PaymentPage.objEditTransactionPin,"1111","MPIN Field");
+		click(PaymentPage.objContinue,"Continue button");
+		explicitWaitVisibility(PaymentPage.objGoToHomePage,30);
+		click(PaymentPage.objGoToHomePage,"Go to homepage button");
+		explicitWaitVisibility(HomePage.objAvailableLimit,20);
+		
+		String stepupPerc = executeQuery1("SELECT dpd_prepay FROM db_tradofina.bnpl_repeat_limit_amount_grid where repeat_type='EARLY' and max_line_amount='2000';");
+		String new_limit = executeQuery1("SELECT new_limit FROM db_tradofina.line_step_up_data where repeat_source_reference_number='"+billRefNo+"';");
+		String old_limit = executeQuery1("SELECT old_limit FROM db_tradofina.line_step_up_data where repeat_source_reference_number='"+billRefNo+"';");
+		
+		if(((Double.parseDouble(old_limit)*(100.00 + Double.parseDouble(stepupPerc))/100.00) == Double.parseDouble(new_limit))){
+			System.out.println("yep");
+			extent.extentLoggerPass("TC_Ring_Customer_Seg_49","TC_Ring_Customer_Seg_49-To verify if user gets step up according to percentage (10) mentioned according to previous loan repayment behaviour");
+			extent.extentLoggerPass("TC_Ring_Customer_Seg_50","TC_Ring_Customer_Seg_50-To verify if user gets step up only if user has utilized \"x\" percentage of amount from previous limit which is mentioned in \"STEP UP CREDIT USAGE PERCENT\" configuration");
+		}	
+		getDriver().resetApp();
+	}
+	
+	//================================================To verify if user gets step down when set as repeat test cases =======================================
+	public void TC_Ring_Customer_Seg_52(String amt) throws Exception{
+		extent.HeaderChildNode("TC_Ring_Customer_Seg_52");
+		executeUpdateOnly("update db_tradofina.bnpl_repeat_limit_amount_grid set dpd_prepay='-20' where max_line_amount='2000' and repeat_type='EARLY';","db_tradofina.bnpl_repeat_limit_amount_grid");
+		String billRefNo = repeatGrid(amt);
+		
+		click(HomePage.objScanQrBtn,"Scan QR button");
+		waitTime(10000);
+		explicitWaitVisibility(HomePage.objPaymentField,30);
+		type(HomePage.objPaymentField,prop.getproperty("stepup_greater_amount_next"),"Pay amt text field");
+		waitTime(3000);
+		Aclick(HomePage.objPayNowBtn,"Pay now button");
+		waitTime(15000);
+		explicitWaitVisibility(PaymentPage.objEditTransactionPin,30);
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		type(PaymentPage.objEditTransactionPin,"1111","MPIN Field");
+		click(PaymentPage.objContinue,"Continue button");
+		explicitWaitVisibility(PaymentPage.objGoToHomePage,30);
+		click(PaymentPage.objGoToHomePage,"Go to homepage button");
+		explicitWaitVisibility(HomePage.objAvailableLimit,20);
+		
+		String stepdownPerc = executeQuery1("SELECT dpd_prepay FROM db_tradofina.bnpl_repeat_limit_amount_grid where repeat_type='EARLY' and max_line_amount='2000';");
+		String new_limit = executeQuery1("SELECT new_limit FROM db_tradofina.line_step_up_data where repeat_source_reference_number='"+billRefNo+"';");
+		String old_limit = executeQuery1("SELECT old_limit FROM db_tradofina.line_step_up_data where repeat_source_reference_number='"+billRefNo+"';");
+		
+		if(((Double.parseDouble(old_limit)*(100.00 + Double.parseDouble(stepdownPerc))/100.00) == Double.parseDouble(new_limit))){
+			System.out.println("yep");
+			extent.extentLoggerPass("TC_Ring_Customer_Seg_52","TC_Ring_Customer_Seg_52-To verify if user gets step down according to percentage (-10) mentioned according to previous loan repayment behaviour");
+			
+		}	
+		executeUpdateOnly("update db_tradofina.bnpl_repeat_limit_amount_grid set dpd_prepay='45' where max_line_amount='2000' and repeat_type='EARLY';","db_tradofina.bnpl_repeat_limit_amount_grid");
+		getDriver().resetApp();
+	}
+	
+	//================================================To verify max and min value for repeat test cases =======================================
+	
+	public void TC_Ring_Customer_Seg_53(String amt) throws Exception{
+		extent.HeaderChildNode("TC_Ring_Customer_Seg_53");
+		executeUpdateOnly("update db_tradofina.bnpl_line_offers set limit_amount = '10000.00' where merchant_type='type2' and segment = 'LTBC1' and surrogate_type='EQUIFAX' and limit_amount='2000.00';","db_tradofina.bnpl_line_offers");
+		executeUpdateOnly("update db_tradofina.bnpl_repeat_limit_amount_grid set dpd_prepay='260.00' where max_line_amount='10000.00' and repeat_type='EARLY';","db_tradofina.bnpl_repeat_limit_amount_grid");
+		String billRefNo = repeatGrid(amt);
+		
+		click(HomePage.objScanQrBtn,"Scan QR button");
+		waitTime(10000);
+		explicitWaitVisibility(HomePage.objPaymentField,30);
+		type(HomePage.objPaymentField,prop.getproperty("stepup_greater_amount_next"),"Pay amt text field");
+		waitTime(3000);
+		Aclick(HomePage.objPayNowBtn,"Pay now button");
+		waitTime(15000);
+		explicitWaitVisibility(PaymentPage.objEditTransactionPin,30);
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		type(PaymentPage.objEditTransactionPin,"1111","MPIN Field");
+		click(PaymentPage.objContinue,"Continue button");
+		explicitWaitVisibility(PaymentPage.objGoToHomePage,30);
+		click(PaymentPage.objGoToHomePage,"Go to homepage button");
+		explicitWaitVisibility(HomePage.objAvailableLimit,20);
+		
+		String stepdownPerc = executeQuery1("SELECT dpd_prepay FROM db_tradofina.bnpl_repeat_limit_amount_grid where repeat_type='EARLY' and max_line_amount='2000';");
+		String new_limit = executeQuery1("SELECT new_limit FROM db_tradofina.line_step_up_data where repeat_source_reference_number='"+billRefNo+"';");
+		String old_limit = executeQuery1("SELECT old_limit FROM db_tradofina.line_step_up_data where repeat_source_reference_number='"+billRefNo+"';");
+		
+		if(new_limit.equals("26000.00")){
+			System.out.println(new_limit);
+			extent.extentLoggerPass("TC_Ring_Customer_Seg_53","TC_Ring_Customer_Seg_53-To verify if user gets repeat limit maximum amount upto 26000 by setting value = 26000");
+			
+		}	
+		executeUpdateOnly("update db_tradofina.bnpl_repeat_limit_amount_grid set dpd_prepay='20.00' where max_line_amount='2000' and repeat_type='EARLY';","db_tradofina.bnpl_repeat_limit_amount_grid");
+		executeUpdateOnly("update db_tradofina.bnpl_line_offers set limit_amount = '2000.00' where merchant_type='type2' and segment = 'LTBC1' and surrogate_type='EQUIFAX' and limit_amount='10000.00';","db_tradofina.bnpl_line_offers");	
+		getDriver().resetApp();
+	}
+	
+	public void TC_Ring_Customer_Seg_54(String amt) throws Exception{
+		extent.HeaderChildNode("TC_Ring_Customer_Seg_54");
+		executeUpdateOnly("update db_tradofina.bnpl_line_offers set limit_amount = '10000.00' where merchant_type='type2' and segment = 'LTBC1' and surrogate_type='EQUIFAX' and limit_amount='2000.00';","db_tradofina.bnpl_line_offers");
+		executeUpdateOnly("update db_tradofina.bnpl_repeat_limit_amount_grid set dpd_prepay='280.00' where max_line_amount='10000.00' and repeat_type='EARLY';","db_tradofina.bnpl_repeat_limit_amount_grid");
+		String billRefNo = repeatGrid(amt);
+		
+		click(HomePage.objScanQrBtn,"Scan QR button");
+		waitTime(10000);
+		explicitWaitVisibility(HomePage.objPaymentField,30);
+		type(HomePage.objPaymentField,prop.getproperty("stepup_greater_amount_next"),"Pay amt text field");
+		waitTime(3000);
+		Aclick(HomePage.objPayNowBtn,"Pay now button");
+		waitTime(15000);
+		explicitWaitVisibility(PaymentPage.objEditTransactionPin,30);
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		type(PaymentPage.objEditTransactionPin,"1111","MPIN Field");
+		click(PaymentPage.objContinue,"Continue button");
+		explicitWaitVisibility(PaymentPage.objGoToHomePage,30);
+		click(PaymentPage.objGoToHomePage,"Go to homepage button");
+		explicitWaitVisibility(HomePage.objAvailableLimit,20);
+		
+		String stepdownPerc = executeQuery1("SELECT dpd_prepay FROM db_tradofina.bnpl_repeat_limit_amount_grid where repeat_type='EARLY' and max_line_amount='2000';");
+		String new_limit = executeQuery1("SELECT new_limit FROM db_tradofina.line_step_up_data where repeat_source_reference_number='"+billRefNo+"';");
+		String old_limit = executeQuery1("SELECT old_limit FROM db_tradofina.line_step_up_data where repeat_source_reference_number='"+billRefNo+"';");
+		
+		if(new_limit.equals("26000.00")){
+			System.out.println(new_limit);
+			extent.extentLoggerPass("TC_Ring_Customer_Seg_54","TC_Ring_Customer_Seg_54-To verify if user gets repeat limit maximum amount upto 26000 by setting value > 26000");
+			
+		}	
+		executeUpdateOnly("update db_tradofina.bnpl_repeat_limit_amount_grid set dpd_prepay='20.00' where max_line_amount='2000' and repeat_type='EARLY';","db_tradofina.bnpl_repeat_limit_amount_grid");
+		executeUpdateOnly("update db_tradofina.bnpl_line_offers set limit_amount = '2000.00' where merchant_type='type2' and segment = 'LTBC1' and surrogate_type='EQUIFAX' and limit_amount='10000.00';","db_tradofina.bnpl_line_offers");	
+		getDriver().resetApp();
+	}
+	
+	public void TC_Ring_Customer_Seg_55(String amt) throws Exception{
+		extent.HeaderChildNode("TC_Ring_Customer_Seg_55");
+		executeUpdateOnly("update db_tradofina.bnpl_line_offers set limit_amount = '10000.00' where merchant_type='type2' and segment = 'LTBC1' and surrogate_type='EQUIFAX' and limit_amount='2000.00';","db_tradofina.bnpl_line_offers");
+		executeUpdateOnly("update db_tradofina.bnpl_repeat_limit_amount_grid set dpd_prepay='-99.00' where max_line_amount='10000.00' and repeat_type='EARLY';","db_tradofina.bnpl_repeat_limit_amount_grid");
+		String billRefNo = repeatGrid(amt);
+		
+		click(HomePage.objScanQrBtn,"Scan QR button");
+		waitTime(10000);
+		explicitWaitVisibility(HomePage.objPaymentField,30);
+		type(HomePage.objPaymentField,prop.getproperty("stepdown_amount"),"Pay amt text field");
+		waitTime(3000);
+		Aclick(HomePage.objPayNowBtn,"Pay now button");
+		waitTime(15000);
+		explicitWaitVisibility(PaymentPage.objEditTransactionPin,30);
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		type(PaymentPage.objEditTransactionPin,"1111","MPIN Field");
+		click(PaymentPage.objContinue,"Continue button");
+		explicitWaitVisibility(PaymentPage.objGoToHomePage,30);
+		click(PaymentPage.objGoToHomePage,"Go to homepage button");
+		explicitWaitVisibility(HomePage.objAvailableLimit,20);
+		
+		
+		String new_limit = executeQuery1("SELECT new_limit FROM db_tradofina.line_step_up_data where repeat_source_reference_number='"+billRefNo+"';");
+		
+		
+		if(new_limit.equals("100.00")){
+			System.out.println(new_limit);
+			extent.extentLoggerPass("TC_Ring_Customer_Seg_55","TC_Ring_Customer_Seg_55-To verify if user gets repeat limit minimum amount upto 100 by setting value = 100");
+			
+		}	
+		executeUpdateOnly("update db_tradofina.bnpl_repeat_limit_amount_grid set dpd_prepay='20.00' where max_line_amount='2000' and repeat_type='EARLY';","db_tradofina.bnpl_repeat_limit_amount_grid");
+		executeUpdateOnly("update db_tradofina.bnpl_line_offers set limit_amount = '2000.00' where merchant_type='type2' and segment = 'LTBC1' and surrogate_type='EQUIFAX' and limit_amount='10000.00';","db_tradofina.bnpl_line_offers");	
+		getDriver().resetApp();
+	}
+	
+	public void TC_Ring_Customer_Seg_56(String amt) throws Exception{
+		extent.HeaderChildNode("TC_Ring_Customer_Seg_56");
+		executeUpdateOnly("update db_tradofina.bnpl_line_offers set limit_amount = '10000.00' where merchant_type='type2' and segment = 'LTBC1' and surrogate_type='EQUIFAX' and limit_amount='2000.00';","db_tradofina.bnpl_line_offers");
+		executeUpdateOnly("update db_tradofina.bnpl_repeat_limit_amount_grid set dpd_prepay='-99.8' where max_line_amount='10000.00' and repeat_type='EARLY';","db_tradofina.bnpl_repeat_limit_amount_grid");
+		String billRefNo = repeatGrid(amt);
+		
+		click(HomePage.objScanQrBtn,"Scan QR button");
+		waitTime(10000);
+		explicitWaitVisibility(HomePage.objPaymentField,30);
+		type(HomePage.objPaymentField,prop.getproperty("stepdown_amount"),"Pay amt text field");
+		waitTime(3000);
+		Aclick(HomePage.objPayNowBtn,"Pay now button");
+		waitTime(15000);
+		explicitWaitVisibility(PaymentPage.objEditTransactionPin,30);
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		Aclick(PaymentPage.objEditTransactionPin,"MPIN Field");
+		type(PaymentPage.objEditTransactionPin,"1111","MPIN Field");
+		click(PaymentPage.objContinue,"Continue button");
+		explicitWaitVisibility(PaymentPage.objGoToHomePage,30);
+		click(PaymentPage.objGoToHomePage,"Go to homepage button");
+		explicitWaitVisibility(HomePage.objAvailableLimit,20);
+		
+		
+		String new_limit = executeQuery1("SELECT new_limit FROM db_tradofina.line_step_up_data where repeat_source_reference_number='"+billRefNo+"';");
+		
+		if(new_limit.equals("100.00")){
+			System.out.println(new_limit);
+			extent.extentLoggerPass("TC_Ring_Customer_Seg_56","TC_Ring_Customer_Seg_56-To verify if user gets repeat limit minimum amount upto 100 by setting value < 100");
+			
+		}	
+		executeUpdateOnly("update db_tradofina.bnpl_repeat_limit_amount_grid set dpd_prepay='20.00' where max_line_amount='2000' and repeat_type='EARLY';","db_tradofina.bnpl_repeat_limit_amount_grid");
+		executeUpdateOnly("update db_tradofina.bnpl_line_offers set limit_amount = '2000.00' where merchant_type='type2' and segment = 'LTBC1' and surrogate_type='EQUIFAX' and limit_amount='10000.00';","db_tradofina.bnpl_line_offers");	
 		getDriver().resetApp();
 	}
 	

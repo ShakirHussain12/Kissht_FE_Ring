@@ -83,7 +83,7 @@ public class HomePage {
 	public static By objSBIBank = By.xpath("//*[@class='android.view.View' and ./*[@text='SBI']]");
 
 	// Pay now button
-	public static By objPayNowBtn = By.xpath("//*[@text='Pay Now']");
+	public static By objPayNowBtn = By.xpath("//*[@text='Pay Now' and ./parent::*[(./preceding-sibling::* | ./following-sibling::*)[@text='Powered by RBI Registered NBFC']]]");
 
 	// Payment failed header
 	public static By objPayFail = By.xpath("//*[@text='Payment failed']");
@@ -179,4 +179,8 @@ public class HomePage {
 	public static By transacNumber = By.xpath("//*[contains(@text,'BNPL')]");
 	
 	public static By okGotIt = By.xpath("//*[@text='Ok Got It']");
+	
+	public static By objBillHistory = By.xpath("//*[@text='Bill history']");
+	
+	public static By objBillRefNo = By.xpath("//*[@text='Bill Reference Number']//following-sibling::*");
 }

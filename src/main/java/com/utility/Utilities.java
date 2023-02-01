@@ -17,6 +17,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Calendar;
@@ -27,6 +30,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -259,6 +263,13 @@ public class Utilities extends ExtentReporter {
 		return age;
 	}
 
+	public String calendarDate(int days) throws Exception{
+		LocalDateTime ldt = LocalDateTime.now().plusDays(days);
+		DateTimeFormatter formmat1 = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+
+		String formatter = formmat1.format(ldt);
+		return formatter;
+	}
 	/**
 	 * Check element present.
 	 *
@@ -2885,8 +2896,8 @@ public class Utilities extends ExtentReporter {
 					+ "            \"count_loan_overdues_1m\": \"\",\r\n"
 					+ "            \"count_loan_overdues\": \"\",\r\n"
 					+ "            \"unique_cc_count_12m\": \"\",\r\n"
-					+ "            \"is_close_comp\": 2,\r\n"
-					+ "            \"is_true_comp\": 3,\r\n"
+					+ "            \"is_close_comp\": 0,\r\n"
+					+ "            \"is_true_comp\": 0,\r\n"
 					+ "            \"count_unique_account_name\": \"\",\r\n"
 					+ "            \"message_type_unique_account_name_product_flag\": \"\",\r\n"
 					+ "            \"debit_sum_avg\": \"\",\r\n"
@@ -2912,7 +2923,7 @@ public class Utilities extends ExtentReporter {
 					+ "            \"avg_cc_spend_count\": \"\"\r\n"
 					+ "        },\r\n"
 					+ "        \"policy\": {\r\n"
-					+ "            \"unique_cc_count_12m\": 1,\r\n"
+					+ "            \"unique_cc_count_12m\": 0,\r\n"
 					+ "            \"is_close_comp\": \"\",\r\n"
 					+ "            \"is_true_comp\": \"\",\r\n"
 					+ "            \"count_unique_account_name\": 1,\r\n"
@@ -2925,7 +2936,7 @@ public class Utilities extends ExtentReporter {
 					+ "            \"count_loan_overdues_1\": \"\",\r\n"
 					+ "            \"cabal_linked_user_reference_numbers\": [],\r\n"
 					+ "            \"cabal_count\":"+cabal_count+",\r\n"
-					+ "            \"ratio_parsed_total_sms\": 0.01\r\n"
+					+ "            \"ratio_parsed_total_sms\": 0.1\r\n"
 					+ "        },\r\n"
 					+ "        \"repeat_v5\": {\r\n"
 					+ "            \"six_mon_avg_9_12_debit_amount\": \"\",\r\n"
@@ -2968,8 +2979,8 @@ public class Utilities extends ExtentReporter {
 					+ "            \"count_loan_overdues_1m\": \"\",\r\n"
 					+ "            \"count_loan_overdues\": \"\",\r\n"
 					+ "            \"unique_cc_count_12m\": \"\",\r\n"
-					+ "            \"is_close_comp\": 5,\r\n"
-					+ "            \"is_true_comp\": 6,\r\n"
+					+ "            \"is_close_comp\": 0,\r\n"
+					+ "            \"is_true_comp\": 0,\r\n"
 					+ "            \"count_unique_account_name\": \"\",\r\n"
 					+ "            \"message_type_unique_account_name_product_flag\": \"\",\r\n"
 					+ "            \"debit_sum_avg\": \"\",\r\n"
@@ -3015,6 +3026,41 @@ public class Utilities extends ExtentReporter {
 		
 	}
 	
+	public static ValidatableResponse generateForceBill(String userRef,String lineRef, String stmtDate) throws Exception{
+		Random rand = new Random();
+
+		HashMap<String, String> req_body = new HashMap<>();
+//	    System.out.println((String) data[0][3]);
+		req_body.put("encrypted_name", prop.getproperty("encryptedName"));
+		req_body.put("user_reference_number", userRef);
+		req_body.put("line_reference_number", lineRef);
+		req_body.put("force_generate_for_other_days", "true");
+		req_body.put("statement_date", stmtDate);
+		
+		JSONObject Myrequestbody = new JSONObject();
+
+		Myrequestbody.put("encrypted_name", req_body.get("encrypted_name"));
+		Myrequestbody.put("user_reference_number", req_body.get("user_reference_number"));
+		Myrequestbody.put("line_reference_number", req_body.get("line_reference_number"));
+		Myrequestbody.put("force_generate_for_other_days", req_body.get("force_generate_for_other_days"));
+		Myrequestbody.put("statement_date", req_body.get("statement_date"));
+		//Myrequestbody.put("latest_loan_history_months_count", req_body.get("latest_loan_history_months_count"));
+		HashMap<String, Object> headers = new HashMap<>();
+		headers.put("client-id", "zx2789");
+
+		ValidatableResponse response = RestAssured.given().baseUri(prop.getproperty("bill_statement")).contentType(ContentType.JSON).headers(headers)
+				.body(Myrequestbody.toJSONString()).when().post().then();
+
+		System.out.println("Request Url -->" + prop.getproperty("bill_statement"));
+		// ExtentReporter.extentLogger("", "Request Url -->" + url);
+		System.out.println("Request :" + Myrequestbody);
+		// ExtentReporter.extentLogger("", "Request :"+Myrequestbody);
+		String Resp = response.extract().body().asString();
+		System.out.println("Response Body= " + Resp);
+		// ExtentReporter.extentLogger("", "Response Body= "+Resp);
+
+		return response;
+	}
 	// execute query from DB
 	public void executeQuery(String dbTable) throws SQLException, ClassNotFoundException {
 		// Setting the driver

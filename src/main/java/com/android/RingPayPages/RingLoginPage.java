@@ -298,7 +298,7 @@ public class RingLoginPage {
 	public static By objIAcceptCheckBox = By.xpath("//*[@class='android.widget.CheckBox']");
 	public static By objAcceptOfferBtn = By.xpath("//*[@text='Accept Offer']");
 	public static By objSetPinPage = By.xpath("//*[@text='Set Pin']");
-	public static By objEnterPin = By.xpath("//*[@text='Enter Pin']/following-sibling::android.widget.TextView");
+	public static By objEnterPin = By.xpath("(//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView' and (./preceding-sibling::* | ./following-sibling::*)[./*[./*[@text='Submit']]]]]/*[@class='android.view.ViewGroup'])[1]");
 	public static By objSetinSubmitBtn = By.xpath("//*[@text='Submit']");
 	public static By objChangePin = By.xpath("//*[@text='Change Pin']");
 	public static By objEnterOldPin = By.xpath("//*[@text='Enter Old Pin']/(following-sibling::android.widget.TextView)[1]");

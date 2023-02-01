@@ -32,8 +32,9 @@
     <classes>
       <class name="com.RingPay.TestScripts.RingPayTestScripts">
         <methods>
-          <include name="ringPolicy_TC_3"/>
           <include name="Before"/>
+          <include name="ringPolicy_TC_55"/>
+          <include name="ringAppQuit"/>
         </methods>
       </class> <!-- com.RingPay.TestScripts.RingPayTestScripts -->
     </classes>

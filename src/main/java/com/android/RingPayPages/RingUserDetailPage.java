@@ -76,7 +76,7 @@ public class RingUserDetailPage {
 	    
 	    public static By objEnterPin = By.xpath("(//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView' and (./preceding-sibling::* | ./following-sibling::*)[./*[./*[@text='Submit']]]]]/*[@class='android.widget.TextView'])[2]");
 	    
-	    public static By objReEnterPin = By.xpath("(//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView' and (./preceding-sibling::* | ./following-sibling::*)[./*[./*[@text='Submit']]]]]/*[@class='android.widget.TextView'])[7]");
+	    public static By objReEnterPin = By.xpath("(//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView' and (./preceding-sibling::* | ./following-sibling::*)[./*[./*[@text='Submit']]]]]/*[@class='android.view.ViewGroup'])[2]");
 	    
 	    public static By objSubmitBtn = By.xpath("//*[@text='Submit']");
 	    

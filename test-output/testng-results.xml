@@ -1,58 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-01-20T14:03:53 IST" name="Android" finished-at="2023-01-20T14:09:57 IST" duration-ms="364213">
+  <suite started-at="2023-01-30T14:02:36 IST" name="Android" finished-at="2023-01-30T14:08:56 IST" duration-ms="379872">
     <groups>
     </groups>
-    <test started-at="2023-01-20T14:03:53 IST" name="RingPay" finished-at="2023-01-20T14:09:57 IST" duration-ms="364213">
+    <test started-at="2023-01-30T14:02:36 IST" name="RingPay" finished-at="2023-01-30T14:08:56 IST" duration-ms="379872">
       <class name="com.RingPay.TestScripts.RingPayTestScripts">
-        <test-method is-config="true" signature="Before()[pri:0, instance:com.RingPay.TestScripts.RingPayTestScripts@64df9a61]" started-at="2023-01-20T14:04:02 IST" name="Before" finished-at="2023-01-20T14:04:13 IST" duration-ms="11181" status="PASS">
+        <test-method is-config="true" signature="Before()[pri:0, instance:com.RingPay.TestScripts.RingPayTestScripts@6722db6e]" started-at="2023-01-30T14:02:46 IST" name="Before" finished-at="2023-01-30T14:02:56 IST" duration-ms="10473" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Before -->
-        <test-method signature="User_Playstore_Flow(java.lang.String, java.lang.String)[pri:0, instance:com.RingPay.TestScripts.RingPayTestScripts@64df9a61]" started-at="2023-01-20T14:04:13 IST" name="User_Playstore_Flow" finished-at="2023-01-20T14:08:25 IST" duration-ms="252083" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[MobileNo]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[MobileNo]]>
-              </value>
-            </param>
-          </params>
+        <test-method signature="ringPolicy_TC_56()[pri:84, instance:com.RingPay.TestScripts.RingPayTestScripts@6722db6e]" started-at="2023-01-30T14:02:56 IST" name="ringPolicy_TC_56" finished-at="2023-01-30T14:08:55 IST" duration-ms="358795" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- User_Playstore_Flow -->
-        <test-method signature="userRegistrationFlow(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.RingPay.TestScripts.RingPayTestScripts@64df9a61]" started-at="2023-01-20T14:08:26 IST" name="userRegistrationFlow" finished-at="2023-01-20T14:09:56 IST" depends-on-methods="com.RingPay.TestScripts.RingPayTestScripts.User_Playstore_Flow" duration-ms="90097" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Feb]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[10]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[1966]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[male]]>
-              </value>
-            </param>
-          </params>
+        </test-method> <!-- ringPolicy_TC_56 -->
+        <test-method is-config="true" signature="ringAppQuit()[pri:0, instance:com.RingPay.TestScripts.RingPayTestScripts@6722db6e]" started-at="2023-01-30T14:08:56 IST" name="ringAppQuit" finished-at="2023-01-30T14:08:56 IST" duration-ms="330" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- userRegistrationFlow -->
+        </test-method> <!-- ringAppQuit -->
       </class> <!-- com.RingPay.TestScripts.RingPayTestScripts -->
     </test> <!-- RingPay -->
   </suite> <!-- Android -->
